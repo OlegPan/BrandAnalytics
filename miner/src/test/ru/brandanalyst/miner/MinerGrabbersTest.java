@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
 import ru.brandanalyst.core.db.provider.*;
+import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.model.BrandDictionaryItem;
 import ru.brandanalyst.miner.util.*;
 import java.util.Date;
@@ -17,7 +18,7 @@ public class MinerGrabbersTest extends AbstractDependencyInjectionSpringContextT
 
     private SimpleJdbcTemplate jdbcTemplate;
 
-    private ArticleProvider articleProvider;
+    private MySQLArticleProvider mySQLArticleProvider;
     private BrandProvider brandProvider;
 
     private GrabberTwitter grabberTwitter;
@@ -39,7 +40,7 @@ public class MinerGrabbersTest extends AbstractDependencyInjectionSpringContextT
     public void setJdbcTemplate(final SimpleJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         brandProvider = new BrandProvider(jdbcTemplate);
-        articleProvider = new ArticleProvider(jdbcTemplate);
+        mySQLArticleProvider = new MySQLArticleProvider(jdbcTemplate);
     }
 
     @Required
@@ -54,7 +55,7 @@ public class MinerGrabbersTest extends AbstractDependencyInjectionSpringContextT
 
     public void testExists() {
         assertNotNull(jdbcTemplate);
-        assertNotNull(articleProvider);
+        assertNotNull(mySQLArticleProvider);
         assertNotNull(brandProvider);
         assertNotNull(grabberRia);
         assertNotNull(grabberTwitter);
@@ -62,12 +63,12 @@ public class MinerGrabbersTest extends AbstractDependencyInjectionSpringContextT
 
     public void testTwitter() throws Exception {
         grabberTwitter.grab(new Date(new Date().getTime() - (long) 86400000));
-        articleProvider.cleanDataStore();
+        mySQLArticleProvider.cleanDataStore();
     }
 
     public void testRia() throws Exception {
         grabberRia.grab(new Date(new Date().getTime() - (long) 86400000));
-        articleProvider.cleanDataStore();
+        mySQLArticleProvider.cleanDataStore();
     }
 
     public void testUtil() throws Exception {

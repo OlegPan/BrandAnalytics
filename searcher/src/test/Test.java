@@ -1,6 +1,6 @@
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.brandanalyst.core.db.provider.ArticleProvider;
+import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.db.provider.BrandProvider;
 import ru.brandanalyst.core.model.Article;
 import ru.brandanalyst.core.model.Brand;
@@ -40,7 +40,7 @@ public class Test {    //this is worked test for lucene index and search
         b1 = new Brand(2, "Google", "Google is better than other search machines", "www.google.com", 0);
         dataStore.writeBrandToDataStore(b1);
 
-        ArticleProvider dataStore2 = new ArticleProvider(jdbcTemplate);
+        MySQLArticleProvider dataStore2 = new MySQLArticleProvider(jdbcTemplate);
         Article a1 = new Article(4, 1, 1, "Gazprom crashed", "Apple делает хорошую продукцию", "www.lenta.ru", new Timestamp(90, 0, 0, 0, 0, 0, 0), 0);
         dataStore2.writeArticleToDataStore(a1);
         a1 = new Article(2, 1, 1, "Microsoft crashed", "Apple не делает хорошую продукцию", "www.lenta.ru", new Timestamp(90, 0, 0, 0, 0, 0, 0), 0);

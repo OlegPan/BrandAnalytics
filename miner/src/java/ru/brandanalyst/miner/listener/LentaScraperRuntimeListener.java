@@ -6,7 +6,7 @@ import org.webharvest.runtime.Scraper;
 import org.webharvest.runtime.ScraperRuntimeListener;
 import org.webharvest.runtime.processors.BaseProcessor;
 import org.webharvest.runtime.variables.Variable;
-import ru.brandanalyst.core.db.provider.ArticleProvider;
+import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.model.Article;
 import ru.brandanalyst.miner.util.DataTransformator;
 import ru.brandanalyst.miner.util.LentaDataTransformator;
@@ -23,13 +23,13 @@ public class LentaScraperRuntimeListener implements ScraperRuntimeListener {
     private static final Logger log = Logger.getLogger(LentaScraperRuntimeListener.class);
 
     private SimpleJdbcTemplate jdbcTemplate;
-    private ArticleProvider articleProvider;
+    private MySQLArticleProvider mySQLArticleProvider;
     private Date timeLimit;
 
     public LentaScraperRuntimeListener(SimpleJdbcTemplate jdbcTemplate, Date timeLimit) {
         this.jdbcTemplate = jdbcTemplate;
         this.timeLimit = timeLimit;
-        articleProvider = new ArticleProvider(jdbcTemplate);
+        mySQLArticleProvider = new MySQLArticleProvider(jdbcTemplate);
     }
 
     private Timestamp evalTimestamp(String stringDate) throws StringIndexOutOfBoundsException {
@@ -108,7 +108,7 @@ public class LentaScraperRuntimeListener implements ScraperRuntimeListener {
             }
             String articleTitle = newsTitle.toString();
             Article article = new Article(-1, brandId, 3, articleTitle, articleContent, articleLink, articleTimestamp, 0);
-            articleProvider.writeArticleToDataStore(article);
+            mySQLArticleProvider.writeArticleToDataStore(article);
             log.info("Lenta: " + ++i + " article added... title = " + articleTitle);
         }
         if ("empty".equalsIgnoreCase(baseProcessor.getElementDef().getShortElementName())) {

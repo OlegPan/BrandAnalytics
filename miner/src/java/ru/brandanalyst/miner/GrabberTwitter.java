@@ -2,7 +2,7 @@ package ru.brandanalyst.miner;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.brandanalyst.core.db.provider.ArticleProvider;
+import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.db.provider.BrandDictionaryProvider;
 import ru.brandanalyst.core.db.provider.BrandProvider;
 import ru.brandanalyst.core.model.Article;
@@ -45,7 +45,7 @@ public class GrabberTwitter extends Grabber {
         Twitter twitter = new TwitterFactory().getInstance();
 
         List<Brand> brandList = new BrandProvider(jdbcTemplate).getAllBrands();
-        ArticleProvider articleProvider = new ArticleProvider(jdbcTemplate);
+        MySQLArticleProvider mySQLArticleProvider = new MySQLArticleProvider(jdbcTemplate);
         BrandDictionaryProvider dictionaryProvider = new BrandDictionaryProvider(jdbcTemplate);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -91,7 +91,7 @@ public class GrabberTwitter extends Grabber {
                         removeDuplicates(resultTweets, dictionary).entrySet().iterator();
                 while (resultIterator.hasNext()) {
                     Map.Entry<String, TweetInfo> next = resultIterator.next();
-                    articleProvider.writeArticleToDataStore(new Article(-1, b.getId(), 2,
+                    mySQLArticleProvider.writeArticleToDataStore(new Article(-1, b.getId(), 2,
                             "", "", next.getKey(), getSimpleTime(next.getValue().getTime()), next.getValue().getNumLikes()));
                 }
 

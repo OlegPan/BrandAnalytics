@@ -2,7 +2,7 @@ package ru.brandanalyst.analyzer;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.brandanalyst.core.db.provider.ArticleProvider;
+import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.db.provider.BrandProvider;
 import ru.brandanalyst.core.db.provider.GraphProvider;
 import ru.brandanalyst.core.db.provider.SemanticDictionaryProvider;
@@ -54,8 +54,8 @@ public class TweetsAnalyzer{
         log.info("graph analyzing started...");
         BrandProvider dirtyBrandProvider = new BrandProvider(dirtyJdbcTemplate);
         BrandProvider pureBrandProvider = new BrandProvider(pureJdbcTemplate);
-        ArticleProvider dirtyArticleProvider = new ArticleProvider(dirtyJdbcTemplate);
-        ArticleProvider pureArticleProvider = new ArticleProvider(pureJdbcTemplate);
+        MySQLArticleProvider dirtyMySQLArticleProvider = new MySQLArticleProvider(dirtyJdbcTemplate);
+        MySQLArticleProvider pureMySQLArticleProvider = new MySQLArticleProvider(pureJdbcTemplate);
         GraphProvider pureGraphProvider = new GraphProvider(pureJdbcTemplate);
         SemanticDictionaryProvider dictionaryProvider = new SemanticDictionaryProvider(dirtyJdbcTemplate);
 
@@ -67,7 +67,7 @@ public class TweetsAnalyzer{
         //counting value
         Set<SemanticDictionaryItem> dictionary = dictionaryProvider.getSemanticDictionary();
         for (Brand b : dirtyBrandProvider.getAllBrands()) {
-            List<Article> allArticles = dirtyArticleProvider.getAllArticlesByBrandAndSource(b.getId(),TWEET_SOURCE_ID);
+            List<Article> allArticles = dirtyMySQLArticleProvider.getAllArticlesByBrandAndSource(b.getId(),TWEET_SOURCE_ID);
             List<Article> articlesPositive = new ArrayList<Article>();
             List<Article> articlesNeutral = new ArrayList<Article>();
             List<Article> articlesNegative = new ArrayList<Article>();
@@ -174,9 +174,9 @@ public class TweetsAnalyzer{
 
     public List<Article> getTweetsFromDB(){
         if(dirtyJdbcTemplate != null){
-            ArticleProvider provider = new ArticleProvider(dirtyJdbcTemplate);
+            MySQLArticleProvider providerMySQL = new MySQLArticleProvider(dirtyJdbcTemplate);
             int tweeterId = TWEET_SOURCE_ID ; //TODO: change 1 to real tweeter id
-            return provider.getAllArticlesBySourceId(tweeterId);
+            return providerMySQL.getAllArticlesBySourceId(tweeterId);
         }
         return null;
     }

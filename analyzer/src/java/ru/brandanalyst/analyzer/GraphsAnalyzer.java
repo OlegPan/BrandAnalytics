@@ -2,19 +2,16 @@ package ru.brandanalyst.analyzer;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.brandanalyst.core.db.provider.ArticleProvider;
+import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.db.provider.BrandProvider;
 import ru.brandanalyst.core.db.provider.GraphProvider;
 import ru.brandanalyst.core.model.Article;
 import ru.brandanalyst.core.model.Brand;
 import ru.brandanalyst.core.model.Graph;
 import ru.brandanalyst.core.model.SingleDot;
-import ru.brandanalyst.core.time.TimeProperties;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -55,8 +52,8 @@ public class GraphsAnalyzer {
         log.info("graph analyzing started...");
         BrandProvider dirtyBrandProvider = new BrandProvider(dirtyJdbcTemplate);
         BrandProvider pureBrandProvider = new BrandProvider(pureJdbcTemplate);
-        ArticleProvider dirtyArticleProvider = new ArticleProvider(dirtyJdbcTemplate);
-        ArticleProvider pureArticleProvider = new ArticleProvider(pureJdbcTemplate);
+        MySQLArticleProvider dirtyMySQLArticleProvider = new MySQLArticleProvider(dirtyJdbcTemplate);
+        MySQLArticleProvider pureMySQLArticleProvider = new MySQLArticleProvider(pureJdbcTemplate);
         GraphProvider pureGraphProvider = new GraphProvider(pureJdbcTemplate);
 
         Map<Long, Double> graphMap = new HashMap<Long, Double>(); //out of memory
@@ -65,7 +62,7 @@ public class GraphsAnalyzer {
         for (Brand b : dirtyBrandProvider.getAllBrands()) {
             pureBrandProvider.writeBrandToDataStore(b); //it shouldn't be here
 
-            for (Article a : dirtyArticleProvider.getAllOfficialArticlesByBrand(b.getId())) {
+            for (Article a : dirtyMySQLArticleProvider.getAllOfficialArticlesByBrand(b.getId())) {
 
                 Timestamp timestamp = a.getTstamp();
                 if (graphMap.containsKey(timestamp.getTime())) {
@@ -74,7 +71,7 @@ public class GraphsAnalyzer {
                     graphMap.put(timestamp.getTime(), 1.0);
                 }
 
-                pureArticleProvider.writeArticleToDataStore(a);
+                pureMySQLArticleProvider.writeArticleToDataStore(a);
             }
             //map to graph
             Graph graph = new Graph("");

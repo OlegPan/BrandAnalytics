@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-import ru.brandanalyst.core.db.provider.ArticleProvider;
+import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.db.provider.BrandDictionaryProvider;
 import ru.brandanalyst.core.model.Article;
 import ru.brandanalyst.miner.util.StringChecker;
@@ -27,11 +27,11 @@ import java.util.StringTokenizer;
 public class ParserRSSXML {
     private static final Logger log = Logger.getLogger(ParserRSSXML.class);
     protected SimpleJdbcTemplate jdbcTemplate;
-    protected ArticleProvider articleProvider;
+    protected MySQLArticleProvider mySQLArticleProvider;
 
     public ParserRSSXML(SimpleJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        articleProvider = new ArticleProvider(jdbcTemplate);
+        mySQLArticleProvider = new MySQLArticleProvider(jdbcTemplate);
     }
     private Timestamp evalTimestamp(String stringDate) throws StringIndexOutOfBoundsException {
         StringTokenizer dateTokenizer=new StringTokenizer(stringDate);
@@ -99,7 +99,7 @@ public class ParserRSSXML {
                 Timestamp articleTimestamp=evalTimestamp(element.getElementsByTagName("pubDate").item(0).getTextContent());
                 for (Long brandId : brandIds) {
                     Article article = new Article(-1, brandId, sourceId, articleTitle, articleText, articleLink, articleTimestamp, numOfLikes);
-                    articleProvider.writeArticleToDataStore(article);
+                    mySQLArticleProvider.writeArticleToDataStore(article);
                 }
             }
         }

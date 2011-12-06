@@ -6,7 +6,7 @@ import org.webharvest.runtime.Scraper;
 import org.webharvest.runtime.ScraperRuntimeListener;
 import org.webharvest.runtime.processors.BaseProcessor;
 import org.webharvest.runtime.variables.Variable;
-import ru.brandanalyst.core.db.provider.ArticleProvider;
+import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.db.provider.BrandDictionaryProvider;
 import ru.brandanalyst.core.model.Article;
 import ru.brandanalyst.miner.util.DataTransformator;
@@ -31,13 +31,13 @@ public class FontankaScraperRuntimeListener implements ScraperRuntimeListener {
     private static final Logger log = Logger.getLogger(FontankaScraperRuntimeListener.class);
 
     private SimpleJdbcTemplate jdbcTemplate;
-    private ArticleProvider articleProvider;
+    private MySQLArticleProvider mySQLArticleProvider;
     private Date timeLimit;
 
     public FontankaScraperRuntimeListener(SimpleJdbcTemplate jdbcTemplate, Date timeLimit) {
         this.jdbcTemplate = jdbcTemplate;
         this.timeLimit = timeLimit;
-        articleProvider = new ArticleProvider(jdbcTemplate);
+        mySQLArticleProvider = new MySQLArticleProvider(jdbcTemplate);
     }
 
     private Timestamp evalTimestamp(String stringDate) throws StringIndexOutOfBoundsException {
@@ -95,7 +95,7 @@ public class FontankaScraperRuntimeListener implements ScraperRuntimeListener {
                 String articleLink = scraper.getContext().get("AbsoluteURL").toString() + scraper.getContext().get("oneNew").toString();
                 for (Long brandId : brandIds) {
                     Article article = new Article(-1, brandId, 10, articleTitle, articleContent, articleLink, articleTimestamp, 0);
-                    articleProvider.writeArticleToDataStore(article);
+                    mySQLArticleProvider.writeArticleToDataStore(article);
                 }
                 log.info("Fontanka: " + ++i + " article added... title = " + articleTitle);
             } catch (Exception e) {

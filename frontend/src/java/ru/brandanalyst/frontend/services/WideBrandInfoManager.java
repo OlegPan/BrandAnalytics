@@ -1,7 +1,7 @@
 package ru.brandanalyst.frontend.services;
 
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.brandanalyst.core.db.provider.ArticleProvider;
+import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.db.provider.BrandProvider;
 import ru.brandanalyst.core.db.provider.GraphProvider;
 import ru.brandanalyst.core.db.provider.TickerProvider;
@@ -14,7 +14,6 @@ import ru.brandanalyst.frontend.models.SimplyArticleForWeb;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Сервис, предоставляющий широкую информацию о бренде, включая последние новости о нем и анализ графиков
@@ -59,8 +58,8 @@ public class WideBrandInfoManager {
     }
 
     public List<SimplyArticleForWeb> getArticlesForBrand(long brandId) {
-        ArticleProvider articleProvider = new ArticleProvider(jdbcTemplate);
-        List<Article> articles = articleProvider.getTopArticles(brandId, NUM_ARTICLES);
+        MySQLArticleProvider mySQLArticleProvider = new MySQLArticleProvider(jdbcTemplate);
+        List<Article> articles = mySQLArticleProvider.getTopArticles(brandId, NUM_ARTICLES);
         List<SimplyArticleForWeb> simplyArticles = new ArrayList<SimplyArticleForWeb>();
         //TODO getting source info by id
         for (Article a : articles) {
