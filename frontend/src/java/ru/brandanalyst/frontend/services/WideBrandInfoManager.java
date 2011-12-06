@@ -1,7 +1,7 @@
 package ru.brandanalyst.frontend.services;
 
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
+import ru.brandanalyst.core.db.provider.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.db.provider.BrandProvider;
 import ru.brandanalyst.core.db.provider.GraphProvider;
 import ru.brandanalyst.core.db.provider.TickerProvider;

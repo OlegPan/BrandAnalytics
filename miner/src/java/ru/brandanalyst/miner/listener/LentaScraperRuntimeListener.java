@@ -6,7 +6,7 @@ import org.webharvest.runtime.Scraper;
 import org.webharvest.runtime.ScraperRuntimeListener;
 import org.webharvest.runtime.processors.BaseProcessor;
 import org.webharvest.runtime.variables.Variable;
-import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
+import ru.brandanalyst.core.db.provider.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.model.Article;
 import ru.brandanalyst.miner.util.DataTransformator;
 import ru.brandanalyst.miner.util.LentaDataTransformator;

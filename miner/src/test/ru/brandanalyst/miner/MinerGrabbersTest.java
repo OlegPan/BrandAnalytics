@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
 import ru.brandanalyst.core.db.provider.*;
-import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
+import ru.brandanalyst.core.db.provider.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.model.BrandDictionaryItem;
 import ru.brandanalyst.miner.util.*;
 import java.util.Date;

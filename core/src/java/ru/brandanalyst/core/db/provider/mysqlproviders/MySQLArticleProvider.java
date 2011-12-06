@@ -1,4 +1,4 @@
-package ru.brandanalyst.core.db.provider.global.mysqlproviders;
+package ru.brandanalyst.core.db.provider.mysqlproviders;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;

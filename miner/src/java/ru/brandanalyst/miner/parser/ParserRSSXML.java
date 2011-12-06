@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-import ru.brandanalyst.core.db.provider.global.mysqlproviders.MySQLArticleProvider;
+import ru.brandanalyst.core.db.provider.mysqlproviders.MySQLArticleProvider;
 import ru.brandanalyst.core.db.provider.BrandDictionaryProvider;
 import ru.brandanalyst.core.model.Article;
 import ru.brandanalyst.miner.util.StringChecker;

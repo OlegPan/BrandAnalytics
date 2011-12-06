@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b02125ea-51ef-4edd-be6b-1179e523717a" name="Default" comment="string checker fixed">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/java/ru/brandanalyst/core/db/provider/global/GlobalArticleProvider.java" />
-      <change type="MOVED" beforePath="C:\Programs\CloneRepo\MyFork\core\src\java\ru\brandanalyst\core\db\provider\ArticleProvider.java" afterPath="$PROJECT_DIR$/core/src/java/ru/brandanalyst/core/db/provider/global/mysqlproviders/MySQLArticleProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BrandAnalytics.iws" afterPath="$PROJECT_DIR$/BrandAnalytics.iws" />
+      <change type="MOVED" beforePath="C:\Programs\CloneRepo\MyFork\core\src\java\ru\brandanalyst\core\db\provider\global\mysqlproviders\MySQLArticleProvider.java" afterPath="$PROJECT_DIR$/core/src/java/ru/brandanalyst/core/db/provider/mysqlproviders/MySQLArticleProvider.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyzer/src/java/ru/brandanalyst/analyzer/Analyzer.java" afterPath="$PROJECT_DIR$/analyzer/src/java/ru/brandanalyst/analyzer/Analyzer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyzer/src/java/ru/brandanalyst/analyzer/GraphsAnalyzer.java" afterPath="$PROJECT_DIR$/analyzer/src/java/ru/brandanalyst/analyzer/GraphsAnalyzer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyzer/src/java/ru/brandanalyst/analyzer/TweetsAnalyzer.java" afterPath="$PROJECT_DIR$/analyzer/src/java/ru/brandanalyst/analyzer/TweetsAnalyzer.java" />
@@ -104,9 +102,9 @@
         </entry>
       </file>
       <file leaf-file-name="MySQLArticleProvider.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/src/java/ru/brandanalyst/core/db/provider/global/mysqlproviders/MySQLArticleProvider.java">
+        <entry file="file://$PROJECT_DIR$/core/src/java/ru/brandanalyst/core/db/provider/mysqlproviders/MySQLArticleProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="69" selection-start="3707" selection-end="3707" vertical-scroll-proportion="0.42175573">
+            <state line="94" column="7" selection-start="3700" selection-end="3700" vertical-scroll-proportion="0.42175573">
               <folding />
             </state>
           </provider>
@@ -189,7 +187,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/miner/src/java/ru/brandanalyst/miner/GrabberFontanka.java" />
         <option value="$PROJECT_DIR$/assessor-tool/src/java/ru/brandanalyst/assessor/TweetsPreparer.java" />
         <option value="$PROJECT_DIR$/miner/configs/riaNews1.xml" />
         <option value="$PROJECT_DIR$/miner/configs/miner.cfg" />
@@ -205,6 +202,7 @@
         <option value="$PROJECT_DIR$/core/src/java/ru/brandanalyst/core/db/provider/global/mysqlproviders/ArticleProvider.java" />
         <option value="$PROJECT_DIR$/core/src/java/ru/brandanalyst/core/db/provider/global/GlobalArticleProvider.java" />
         <option value="$PROJECT_DIR$/core/src/java/ru/brandanalyst/core/db/provider/global/mysqlproviders/MySQLArticleProvider.java" />
+        <option value="$PROJECT_DIR$/core/src/java/ru/brandanalyst/core/db/provider/mysqlproviders/MySQLArticleProvider.java" />
       </list>
     </option>
   </component>
@@ -401,7 +399,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="global" />
+              <option name="myItemId" value="mysqlproviders" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -440,10 +438,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="global" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mysqlproviders" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1028,7 +1022,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22525597" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1038,7 +1032,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32753405" sideWeight="0.6864536" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.32903716" sideWeight="0.63535035" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34574467" sideWeight="0.7525597" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34574467" sideWeight="0.7525597" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37442923" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24744028" sideWeight="0.99773073" order="2" side_tool="false" content_ui="tabs" x="0" y="24" width="1366" height="744" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32764506" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
@@ -1216,9 +1210,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/java/ru/brandanalyst/core/db/provider/global/mysqlproviders/MySQLArticleProvider.java">
+    <entry file="file://$PROJECT_DIR$/core/src/java/ru/brandanalyst/core/db/provider/mysqlproviders/MySQLArticleProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="69" selection-start="3707" selection-end="3707" vertical-scroll-proportion="0.42175573">
+        <state line="94" column="7" selection-start="3700" selection-end="3700" vertical-scroll-proportion="0.42175573">
           <folding />
         </state>
       </provider>
